@@ -12,6 +12,7 @@ for x in Range(5):
     print(x)
 
 # generator expression
+# It's good for simple iteration.
 a = [i for i in range(10) if i % 2]
 b = (i for i in range(10) if i % 2)
 print(a, b)
