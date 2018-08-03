@@ -1,10 +1,52 @@
-# Generator functions allow you to declare a function that behaves like an iterator.
+import sys
+import time
 
-# An iterator is an object that can be iterated (looped) upon. It is used to abstract a container of data to make it behave like an iterable object.
+# intro to generator.
+def Range(n):
+    i = 0
+    while i < n:
+        yield i
+        i += 1
 
-a = (i for i in range(5))
-b = iter([1,2,3,4])
-print(a) # a is generator
-print(b) # b is iterator
+for x in Range(5):
+    print(x)
 
-# Lazy evaluation is an evaulation strategy which delays the evaluation of an expression until its value is needed and which also avoids repeated evaluations.
+# generator expression
+a = [i for i in range(10) if i % 2]
+b = (i for i in range(10) if i % 2)
+print(a, b)
+
+
+# Why generator?
+# 1. effective memory use.
+print(sys.getsizeof([i for i in range(100) if i % 2]))
+print(sys.getsizeof([i for i in range(1000) if i % 2]))
+print(sys.getsizeof((i for i in range(100) if i % 2)))
+print(sys.getsizeof((i for i in range(1000) if i % 2)))
+
+# 2. Lazy evaluation
+def sleep_func(x):
+    print("Sleep ...")
+    time.sleep(1)
+    return x
+
+_list = [sleep_func(x) for x in range(5)]
+for i in _list:
+    print(i)
+
+_generator = (sleep_func(x) for x in range(5))
+for i in _generator:
+    print(i)
+
+# Exmaple : Fibonacci Sequence
+def fibonacci(n):
+    a, b = 0, 1
+    i = 0
+    while i < n:
+        yield a
+        a, b = b, a + b
+        i += 1
+
+fib = fibonacci(10)
+for x in fib:
+    print(x)
