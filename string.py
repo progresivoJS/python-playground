@@ -2,6 +2,11 @@
 
 def get_formmated_user_info(user):
     output = 'Name: {user.name}, Age: {user.age}, Sex: {user.sex}'.format(user=user)
+
+def get_format():
+    print("{1}, {0}".format("World!", "Hello"))
+
+get_format()
     
 # join
 # use ''.join() instead of string append
