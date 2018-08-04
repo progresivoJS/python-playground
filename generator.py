@@ -1,6 +1,7 @@
 import sys
 import time
 
+
 # intro to generator.
 def Range(n):
     i = 0
